@@ -1,0 +1,15 @@
+deb http://mirrors.aliyun.com/ubuntu-ports/ bionic main
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ bionic main
+
+deb http://mirrors.aliyun.com/ubuntu-ports/ bionic-updates main
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ bionic-updates main
+
+deb http://mirrors.aliyun.com/ubuntu-ports/ bionic universe
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ bionic universe
+deb http://mirrors.aliyun.com/ubuntu-ports/ bionic-updates universe
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ bionic-updates universe
+
+deb http://mirrors.aliyun.com/ubuntu-ports/ bionic-security main
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ bionic-security main
+deb http://mirrors.aliyun.com/ubuntu-ports/ bionic-security universe
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ bionic-security universe
