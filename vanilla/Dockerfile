@@ -57,7 +57,7 @@ RUN rm /tmp/sources-amd64.list; rm /tmp/sources-arm64.list
 RUN apt-get update -y
 RUN DEBIAN_FRONTEND="noninteractive" apt-get upgrade -y
 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y sudo gosu vim less net-tools curl g++ libace-dev libtbb-dev git cmake libmysqlclient-dev openssl libssl-dev build-essential checkinstall zlib1g-dev iputils-ping telnet unzip
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y sudo gosu vim less net-tools curl g++ libace-dev libtbb-dev git cmake libmysqlclient-dev openssl libssl-dev build-essential checkinstall zlib1g-dev iputils-ping telnet unzip tmux
 
 RUN echo "ACE_ROOT=/usr/include/ace" >> /etc/environment
 RUN echo "TBB_ROOT_DIR=/usr/include/tbb" >> /etc/environment
@@ -82,7 +82,7 @@ RUN cd /home/admin/vmangos/build && make -j 4 && make install
 
 ## 若没有在编译过程中自动准备data, 则专门拷贝一份
 COPY data.zip /tmp/data.zip
-RUN if [ "0" = "$USE_EXTRACTORS" ] ; then unzip -d /home/admin/vmangos /tmp/data.zip ; fi
+RUN if [ "0" = "$USE_EXTRACTORS" ] ; then unzip -d /home/admin/vmangos /tmp/data.zip && mv /home/admin/vmangos/data/dbc /home/admin/vmangos/data/${SUPPORTED_CLIENT_BUILD}/ ; fi
 RUN rm /tmp/data.zip
 
 ## 准备配置文件

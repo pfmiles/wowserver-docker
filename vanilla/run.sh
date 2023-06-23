@@ -71,7 +71,8 @@ fi
 start_server() {
   if [ -n "$1" ]; then
     echo "Starting the $1 server..."
-    gosu admin nohup gosu admin /home/admin/vmangos/bin/${1} >/home/admin/vmangos/logs/${1}/nohup.out 2>&1 &
+    cd /home/admin/vmangos || exit
+    gosu admin tmux new-session -d -s ${1} ./bin/${1}
   else
     report_err_exit "Server not specified."
   fi
@@ -99,7 +100,6 @@ sed -i "s/^TimeZoneOffset.*$/TimeZoneOffset = ${timeZoneOffset}/g" /home/admin/v
 sed -i "s/^Motd.*$/Motd = ${motd}/g" /home/admin/vmangos/etc/mangosd.conf
 
 ## 根据本实例server类型启动server
-cd /home/admin/vmangos || exit
 if [ "realmd" = "$serverType" ]; then
   start_server "realmd"
 elif [ "mangosd" = "$serverType" ]; then
