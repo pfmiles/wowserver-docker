@@ -82,7 +82,7 @@ RUN cd /home/admin/vmangos/build && make -j 4 && make install
 
 ## 若没有在编译过程中自动准备data, 则专门拷贝一份
 COPY data.zip /tmp/data.zip
-RUN if [ "0" = "$USE_EXTRACTORS" ] ; then unzip -d /home/admin/vmangos /tmp/data.zip && mv /home/admin/vmangos/data/dbc /home/admin/vmangos/data/${SUPPORTED_CLIENT_BUILD}/ ; fi
+RUN if [ "0" = "$USE_EXTRACTORS" ] ; then unzip -d /home/admin/vmangos /tmp/data.zip && mkdir -p /home/admin/vmangos/data/${SUPPORTED_CLIENT_BUILD} && mv /home/admin/vmangos/data/dbc /home/admin/vmangos/data/${SUPPORTED_CLIENT_BUILD}/ ; fi
 RUN rm /tmp/data.zip
 
 ## 准备配置文件
